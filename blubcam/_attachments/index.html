@@ -14,7 +14,7 @@
 <script>
     var img = document.querySelector('img'),
         txt = document.querySelector('span'),
-        db = fermata.json("../../");
+        db = fermata.json("../..");
     db.get(function (e,d) {
         if (e) alert("Couldn't access database. You're my gaurdian angel.");
         var feed = db({filter:'_view', view:'blubcam/toots_by_time', include_docs:true});

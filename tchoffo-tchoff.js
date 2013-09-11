@@ -7,7 +7,7 @@ var macAddress = process.argv[2].replace(/-/g, '').toLowerCase(),
     dbUrl = process.argv[4];
 
 var cfg = {
-    uploadPath : "/tmp",
+    uploadPath : "/tmp/",
     cards: {}
 };
 cfg.cards[macAddress] = {uploadKey:uploadKey};

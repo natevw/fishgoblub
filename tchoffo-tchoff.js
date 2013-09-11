@@ -22,9 +22,10 @@ destDB.get(function (e,d) {         // check DB available before accepting image
 });
 
 server.on('imageReceived', function(data) {
-    console.log("received an image: " + data.filename.slice(cfg.uploadPath.length));
+    var file = data.filename.slice(cfg.uploadPath.length);
+    console.log("received an image: "+file);
     
-    destDB.post({'com.stemstorage.toot':true, uploaded:new Date().toISOString()}, function (e,d) {
+    destDB.post({'com.stemstorage.toot':true, file:file, uploaded:new Date().toISOString()}, function (e,d) {
         if (e) console.error(e);
         else fs.readFile(data.filename, function (e,file) {       // TODO: streams support in Fermata already!!!
             if (e) console.error(e);

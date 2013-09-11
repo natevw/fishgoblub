@@ -1,0 +1,27 @@
+{
+  "name": "fishgoblub",
+  "version": "0.0.0",
+  "description": "Grabs images from an Eye-Fi and puts them into CouchDB.",
+  "main": "tchoffo-tchoff.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:natevw/fishgoblub.git"
+  },
+  "keywords": [
+    "eyefi",
+    "couchdb",
+    "fox linguistics"
+  ],
+  "author": "Nathan Vander Wilt",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/natevw/fishgoblub/issues"
+  },
+  "dependencies": {
+    "eyefi": "~0.1.2",
+    "fermata": "~0.9.7"
+  }
+}

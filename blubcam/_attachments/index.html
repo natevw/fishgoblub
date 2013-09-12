@@ -8,17 +8,42 @@
         img { max-height: 350px; }
     </style>
 </head><body>
+
+<h1>Solar Sousveillance</h1>
+
+<p>My dad and I are installing a solar electric system on my roof in West Richland, Washington. Follow our progress from above!</p>
+
+<p>
     <img><br>
     <span>Loading…</span>
+</p>
+
+<!--<p>[gallery of older thumbnails, hover to view?]</p>-->
+
+<h2>Behind-the-scenes</h2>
+
+<p>We&#39;re installing twenty Itek 240W solar photovoltaic modules to feed a grid-tied Eltek THEIA 4.4 inverter. This equipment is Washington manufactured, qualifying us for some lucrative <a href="http://www.itekenergy.com/financial-incentives/">state subsidies</a> in addition to the federal tax rebate.</p>
+
+<p>The overhead rig is based around Public Lab&#39;s <a href="http://shop.breadpig.com/collections/publiclaboratory/products/balloon-mapping-kit">Ballon Mapping Kit</a>. I&#39;m using an older <a href="http://www.eye.fi/">Eye-Fi</a> card to wirelessly &quot;tether&quot; my camera to <a href="https://github.com/natevw/fishgoblub">some software I assembled</a> for my <a href="http://www.raspberrypi.org/faqs">Raspberry Pi</a>. The pictures are then streamed to this site, which is hosted by <a href="http://iriscouch.com">IrisCouch</a>.</p>
+
+<h2>About us</h2>
+
+<p>[pic] natevw</p>
+
+<p>I&#39;m a <a href="http://exts.ch/">freelance software developer</a> who likes to make interesting challenges seem easy. Check out <a href="http://n.exts.ch/">my blog</a> for some other projects I&#39;ve been working on lately.</p>
+
+<p>[pic] Doug Vander Wilt</p>
+
+<p>My dad works for <a href="http://www.bellaenergy.com/">Bella Energy</a> (a commercial solar provider) and does residential system design and installations like this one on the side.</p>
     
 <script>
     var img = document.querySelector('img'),
         txt = document.querySelector('span'),
-        db = fermata.json("../..");
+        db = fermata.json((location.hostname === "solar.batsig.nl") ? "/db" : "../..");
     db.get(function (e,d) {
-        if (e) alert("Couldn't access database. You're my gaurdian angel.");
+        if (e) return alert("Couldn't access database. You're my gaurdian angel.");
         var feed = db({filter:'_view', view:'blubcam/toots_by_time', include_docs:true});
-        fermata.plugins.couchdb.watchChanges(feed, d.update_seq-1, function (res) {     // HACK: update_seq-1 won't work w/BigCouch
+        fermata.plugins.couchdb.watchChanges(feed, d.update_seq-10, function (res) {     // HACK: update_seq math won't work w/BigCouch
             var last = res[res.length-1];
             if (last) {
                 img.src = db(last.id,'original')();
